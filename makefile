@@ -16,3 +16,7 @@ src/system.stm32f4xx.c
 
 # Assembly startup file
 ASM_SOURCES = startup/startup_stm32f412zx.s
+
+# C Compiler flags
+CFLAGS = $(MCU) $(INCLUDES) -Wall -Os							# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os)
+
