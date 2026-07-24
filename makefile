@@ -67,3 +67,7 @@ build:
 # Delete the build directory
 clean:
 	rm -rf build
+
+# Dependencies
+#	ignore if it doesnt exist, but if there are dependency files created by -MMD -MP then include those rules in this makefile. wildcard tells it to grab any and all .d files, 
+-include $(wildcard build/*.d)
