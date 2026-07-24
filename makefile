@@ -21,5 +21,5 @@ ASM_SOURCES = startup/startup_stm32f412zx.s
 CFLAGS = $(MCU) $(INCLUDES) -Wall -Os								# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os)
 
 # Linker Directives
-LDSCRIPT = #TODO
+LDSCRIPT = STM32F412ZG_FLASH.ld										# Point to lnker script
 LDFLAGS = $(MCU) -T$(LDSCRIPT)-Wl,--gc-sections --specs=nano.specs  # Pass MCU variables so it knows what its assembling, tell it where to find linker file, enable garbage collection, use lightweight C lib
