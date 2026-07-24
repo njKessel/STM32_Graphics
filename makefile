@@ -45,4 +45,13 @@ build/%.o: %.c | build
 #	Same as C compilation, but pointed at Assembly files, and it ignores optimization and logic since assembly is direct to hardware. It does need to know MCU architecture though
 build/%.o: %.s | build
 	$(CC) -c $(MCU) $< -o $@
-	
+
+# Invoke the linker
+#	Tell the C compiler to link all the object files using the provided linker instructions (flags, LDFLAGS)
+build/main.elf: $(OBJECTS)
+	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+
+# Strip metadata to create the binary
+#	Copy main.elf but change it (-O) to binary
+build/main.bin: build/main.elf
+	$(OBJCOPY) -O binary $< $@
