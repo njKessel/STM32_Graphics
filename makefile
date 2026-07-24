@@ -14,3 +14,5 @@ C_SOURCES = \
 src/main.c \
 src/system.stm32f4xx.c
 
+# Assembly startup file
+ASM_SOURCES = startup/startup_stm32f412zx.s
