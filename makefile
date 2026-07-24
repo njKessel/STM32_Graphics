@@ -18,7 +18,7 @@ src/system_stm32f4xx.c
 ASM_SOURCES = startup/startup_stm32f412zx.s
 
 # C Compiler flags
-CFLAGS = $(MCU) $(INCLUDES) -Wall -Os -MMD -MP -DSTM32F412Zx		# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os), -MMD and -MP handle dependencies 
+CFLAGS = $(MCU) $(INCLUDES) -Wall -Os -MMD -MP -DSTM32F412Zx -H		# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os), -MMD and -MP handle dependencies 
 
 # Linker Directives
 LDSCRIPT = STM32F412ZG_FLASH.ld										# Point to linker script
