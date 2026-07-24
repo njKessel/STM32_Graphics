@@ -40,3 +40,9 @@ all: build/main.elf build/main.bin size								# Tells make it needs build/main.
 # 	Tell the C compiler (CC) to build with flags -c (tells it to compile but not do any linking (thats what LDSCRIPT is for later)), CFLAGS, then $< (whats being handled) and output to $@ (the new file)
 build/%.o: %.c | build
 	$(CC) -c $(CFLAGS) $< -o $@
+
+# Assembly Compilation
+#	Same as C compilation, but pointed at Assembly files, and it ignores optimization and logic since assembly is direct to hardware. It does need to know MCU architecture though
+build/%.o: %.s | build
+	$(CC) -c $(MCU) $< -o $@
+	
