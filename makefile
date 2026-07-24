@@ -1,13 +1,13 @@
 # TOOLCHAIN EXECUTABLES
-CC = arm-none-eabi-gcc 											# For C compilation
-OBJCOPY = arm-none-eabi-objcopy 								# For converting object files to binary
-SIZE = arm-none-eabi-size 										# For displaying the size of the compiled binary
+CC = arm-none-eabi-gcc 												# For C compilation
+OBJCOPY = arm-none-eabi-objcopy 									# For converting object files to binary
+SIZE = arm-none-eabi-size 											# For displaying the size of the compiled binary
 
 # MCU Arch
-MCU = -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-16 # Cortex-M4 cores with Thumb-2 ISA, routing math to strictly the FPU.
+MCU = -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-16 	# Cortex-M4 cores with Thumb-2 ISA, routing math to strictly the FPU.
 
 # Where to find headers
-INCLUDES = -Iinclude -Ivendor/cmsis								# Telling Make that the #include files are in the include and cmsis directories
+INCLUDES = -Iinclude -Ivendor/cmsis									# Telling Make that the #include files are in the include and cmsis directories
 
 # Where to find source
 C_SOURCES = \
@@ -18,5 +18,8 @@ src/system.stm32f4xx.c
 ASM_SOURCES = startup/startup_stm32f412zx.s
 
 # C Compiler flags
-CFLAGS = $(MCU) $(INCLUDES) -Wall -Os							# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os)
+CFLAGS = $(MCU) $(INCLUDES) -Wall -Os								# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os)
 
+# Linker Directives
+LDSCRIPT = #TODO
+LDFLAGS = $(MCU) -T$(LDSCRIPT)-Wl,--gc-sections --specs=nano.specs  # Pass MCU variables so it knows what its assembling, tell it where to find linker file, enable garbage collection, use lightweight C lib
