@@ -22,7 +22,7 @@ CFLAGS = $(MCU) $(INCLUDES) -Wall -Os -MMD -MP						# Pass MCU and INCLUDES vari
 
 # Linker Directives
 LDSCRIPT = STM32F412ZG_FLASH.ld										# Point to linker script
-LDFLAGS = $(MCU) -T$(LDSCRIPT) -Wl,--gc-sections --specs=nano.specs  # Pass MCU variables so it knows what its assembling, tell it where to find linker file, enable garbage collection, use lightweight C lib
+LDFLAGS = $(MCU) -T$(LDSCRIPT) -Wl,--gc-sections --specs=nano.specs # Pass MCU variables so it knows what its assembling, tell it where to find linker file, enable garbage collection, use lightweight C lib
 
 # Create the object files
 OBJECTS = $(addprefix build/,$(notdir $(C_SOURCES:.c=.o)))			# Replace file extension .c with .o, remove the directory path, move it to the build directory
@@ -31,3 +31,12 @@ OBJECTS += $(addprefix build/,$(notdir $(ASM_SOURCES:.s=.o)))		# Do the same but
 # Tell make where to search for the raw source files
 vpath %.c src														# Look for C files in src
 vpath %.s startup 													# Look for Assembly files in startup
+
+# Build Rules -------------------------------
+all: build/main.elf build/main.bin size								# Tells make it needs build/main.elf, so it figures out how to make it with later rules. Does the same for main.bin, and prints size to terminal using size rule later on.
+
+# C Compilation
+# 	Rule for creating files that are in build and are obj files (build/%.o), created from .c files (%.c), and only do this if the build directory exists and wasnt recently modified
+# 	Tell the C compiler (CC) to build with flags -c (tells it to compile but not do any linking (thats what LDSCRIPT is for later)), CFLAGS, then $< (whats being handled) and output to $@ (the new file)
+build/%.o: %.c | build
+	$(CC) -c $(CFLAGS) $< -o $@
