@@ -23,3 +23,11 @@ CFLAGS = $(MCU) $(INCLUDES) -Wall -Os								# Pass MCU and INCLUDES variables t
 # Linker Directives
 LDSCRIPT = STM32F412ZG_FLASH.ld										# Point to linker script
 LDFLAGS = $(MCU) -T$(LDSCRIPT)-Wl,--gc-sections --specs=nano.specs  # Pass MCU variables so it knows what its assembling, tell it where to find linker file, enable garbage collection, use lightweight C lib
+
+# Create the object files
+OBJECTS = $(addprefix build/,$(notdir $(C_SOURCES:.c=.o)))			# Replace file extension .c with .o, remove the directory path, move it to the build directory
+OBJECTS += $(addprefix build/,$(notdir $(ASM_SOURCES:.s=.o)))		# Do the same but for assembly
+
+# Tell make where to search for the raw source files
+vpath %.c src														# Look for C files in src
+vpath %.s startup 													# Look for Assembly files in startup
