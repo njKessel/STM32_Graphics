@@ -55,3 +55,15 @@ build/main.elf: $(OBJECTS)
 #	Copy main.elf but change it (-O) to binary
 build/main.bin: build/main.elf
 	$(OBJCOPY) -O binary $< $@
+
+# Show memory footprint in terminal
+size: build/main.elf
+	$(SIZE) $<
+
+# Create the build directory
+build:
+	mkdir -p build
+
+# Delete the build directory
+clean:
+	rm -rf build
