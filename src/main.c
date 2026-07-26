@@ -8,11 +8,13 @@ int main(void) {
     // Reset GPIO modes
     GPIOB->MODER &= ~(0b11 << 0);       // PB0
     GPIOB->MODER &= ~(0b11 << 14);      // PB7
+    GPIOB->MODER &= ~(0b11 << 28);      // PB14
 
     // Set GPIO modes for write
     GPIOB->MODER |= (0b01 << 0);        // PB0
     GPIOB->MODER |= (0b01 << 14);       // PB7
-
+    GPIOB->MODER |= (0b01 << 28);       // PB14
+    
     while (1) {
         // Enable LED LD1
         GPIOB->ODR |= (1 << 0);
