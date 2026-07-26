@@ -70,7 +70,7 @@ clean:
 
 # Flash to the start of the chips memory
 flash:
-	st-flash write build/main.bin 0x08000000
+	st-flash --reset write build/main.bin 0x08000000
 
 # Dependencies
 #	ignore if it doesnt exist, but if there are dependency files created by -MMD -MP then include those rules in this makefile. wildcard tells it to grab any and all .d files, 
