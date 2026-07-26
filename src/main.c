@@ -14,6 +14,8 @@ int main(void) {
     while (1) {
         // Enable LED LD1
         GPIOB->ODR |= (1 << 0);
+        // Disable LED LD2
+        GPIOB->ODR &= ~(1 << 7);
 
         for (volatile uint32_t i = 0; i < 1000000; i++) {
             // Delay
@@ -21,6 +23,8 @@ int main(void) {
 
         // Disable LED LD1
         GPIOB->ODR &= ~(1 << 0);
+        // Enable LED LD2
+        GPIOB->ODR |= ~(1 << 7);
 
         for (volatile uint32_t i = 0; i < 1000000; i++) {
             // Delay
