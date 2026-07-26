@@ -25,7 +25,7 @@ int main(void) {
         // Disable LED LD2
         GPIOB->ODR &= ~(1 << 7);
         // Enable LED LD3
-        if (cycleCounter % 2 = 0) {
+        if (cycleCounter % 2 == 0) {
             GPIOB->ODR |= (1 << 14);
         }
 
