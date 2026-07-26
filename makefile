@@ -68,6 +68,7 @@ build:
 clean:
 	rm -rf build
 
+# Flash to the start of the chips memory
 flash:
 	st-flash write build/main.bin 0x08000000
 
