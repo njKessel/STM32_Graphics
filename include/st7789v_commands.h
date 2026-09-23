@@ -52,7 +52,7 @@ DESCRIPTION -------------------------
 // Commands and Operations
 //      Command Name                    Code (unsigned)     Description
 #define ST7789V_NOP                     0x00U               // No operation, wastes a cycle
-#define ST7789V_SWRESET                 0x01U               // 
+#define ST7789V_SWRESET                 0x01U               // Software reset
 #define ST7789V_RDDID                   0x04U               // Read display IO TODO: What does this return
 #define ST7789V_RDDST                   0x09U               // Read display status TODO: What does this return
 #define ST7789V_RDDPM                   0x0AU               // Read display power status TODO: What does this return
@@ -107,6 +107,7 @@ void        ST7789V_DispOff();
 
 // IO functions
 void        ST7789V_IO_WriteData(uint8_t RegValue);
+void        ST7789V_IO_WriteRegister(uint8_t Register);
 void        ST7789V_IO_ReadData(uint8_t RegValue, uint8_t ReadSize); // TODO: check sizes
 
 #endif

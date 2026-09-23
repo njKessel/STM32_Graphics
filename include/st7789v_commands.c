@@ -9,6 +9,7 @@ BLAME&HISTORY -----------------------
     SOURCES:    Sitronix ST7789V Datasheet sourced from https://dl.espressif.com/dl/schematics/ST7789V_SPEC_V1.0.pdf
                 https://github.com/STMicroelectronics/stm32-ili9341/blob/main/ili9341.h for style and driver research
                 https://github.com/STMicroelectronics/stm32-bsp-common/blob/main/lcd.h
+                https://github.com/adafruit/Adafruit_CircuitPython_ST7789/blob/main/adafruit_st7789.py for init sequence framework
 
 LLM USAGE ---------------------------
     AI USE:     No
@@ -31,13 +32,28 @@ DESCRIPTION -------------------------
 #include "st7789v_commands.h"
 
 void ST7789V_Init() {
-    
+    ST7789V_IO_WriteRegister(ST7789V_SWRESET);      // Software reset
+    // TODO: Delay
+    ST7789V_IO_WriteRegister(ST7789V_SLPOUT);       // Pull from sleep
+    // TODO: Delay
+    ST7789V_IO_WriteRegister(ST7789V_COLMOD);       // Set color depth to 262K 18bit/pixel
+    ST7789V_IO_WriteData(0x66);
+    // TODO: Delay
+    ST7789V_IO_WriteRegister(ST7789V_MADCTL);       
+    ST7789V_IO_WriteData(0x00);                     // Page addr T>B, column addr L>R, page/column order normal, line addr order T>B, RGB, refresh L>R
+    // TODO: Delay
+    ST7789V_IO_WriteRegister(ST7789V_NORON);        // Normal mode
+    // TODO: Delay
+    ST7789V_IO_WriteRegister(ST7789V_DISPON);       // Display on
+    // TODO: Delay
 }
 
 // Display power on/off
 void ST7789V_DispOn() {
-    
+    ST7789V_IO_WriteRegister(ST7789V_DISPON);       // Display on
+    // TODO: Delay
 }
 void ST7789V_DispOff() {
-
+    ST7789V_IO_WriteRegister(ST7789V_DISPOFF);      // Display off
+    // TODO: Delay
 }
