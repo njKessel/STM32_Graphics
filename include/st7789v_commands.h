@@ -8,6 +8,7 @@ BLAME&HISTORY -----------------------
     DATE:       2026-09-22
     SOURCES:    Sitronix ST7789V Datasheet sourced from https://dl.espressif.com/dl/schematics/ST7789V_SPEC_V1.0.pdf
                 https://github.com/STMicroelectronics/stm32-ili9341/blob/main/ili9341.h for style and driver research
+                https://github.com/STMicroelectronics/stm32-bsp-common/blob/main/lcd.h
 
 LLM USAGE ---------------------------
     AI USE:     No
@@ -29,6 +30,24 @@ DESCRIPTION -------------------------
 
 #ifndef ST7789V_COMMANDS_H
 #define ST7789V_COMMANDS_H
+
+// Includes
+#include <stdint.h>
+
+// Screen Size
+//      Direction           Size            Size in pixels
+#define ST7789V_HZ_DISP     ((uint16_t)     340)
+#define ST7789V_VT_DISP     ((uint16_t)     240)
+
+// Timings
+//      Name                Data Size       Timing Length       Unit
+#define ST7789V_HZ_SYNC     ((uint16_t)     9)                  // Clock Cycles
+#define ST7789V_HZ_BP       ((uint16_t)     9)                  // Clock Cycles
+#define ST7789V_HZ_FP       ((uint16_t)     38)                 // Clock Cycles
+#define ST7789V_VT_SYNC     ((uint16_t)     4)                  // Lines
+#define ST7789V_VT_BP       ((uint16_t)     4)                  // Lines
+#define ST7789V_VT_FP       ((uint16_t)     8)                  // Lines
+
 
 // Commands and Operations
 //      Command Name                    Code (unsigned)     Description
@@ -81,6 +100,13 @@ DESCRIPTION -------------------------
 #define ST7789V_RDID2                   0xDBU               // Read ID2
 #define ST7789V_RDID3                   0xDCU               // Read ID3
 
+// Display Functions
+void        ST7789V_Init();
+void        ST7789V_DispOn();
+void        ST7789V_DispOff();
 
+// IO functions
+void        ST7789V_IO_WriteData(uint8_t RegValue);
+void        ST7789V_IO_ReadData(uint8_t RegValue, uint8_t ReadSize); // TODO: check sizes
 
 #endif
