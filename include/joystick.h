@@ -24,8 +24,3 @@ DESCRIPTION -------------------------
     This file contatins definitions for interfacing with the X-NUCLEO-GFX02Z1
     display expansion board's control joystick
 */
-
-#include <gfx02z1_II.h>
-#include <stm32f4xx.h>
-
-uint8_t joy_readState();
