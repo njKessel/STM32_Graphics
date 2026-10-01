@@ -1,12 +1,12 @@
 /* 
 FILE INFORMATION --------------------
-    FILENAME:   gfx02Z1_st7789v.c
+    FILENAME:   gfx02Z1_II.c
     TYPE:       C Header
 
 BLAME&HISTORY -----------------------
     AUTHOR:     Nathaniel Kessel
-    DATE:       2026-09-23
-    SOURCES:    
+    DATE:       2026-09-25
+    SOURCES:    https://www.st.com/resource/en/user_manual/um2905-display-expansion-board-for-stm32-nucleo144-stmicroelectronics.pdf
 
 LLM USAGE ---------------------------
     AI USE:     No
@@ -26,4 +26,9 @@ DESCRIPTION -------------------------
     for the second revison of the board with the Siltronix ST7789V.
 */
 
-#include "st7789v_commands.h"
+// Includes
+#include <stdint.h>                 // Integer types
+#include <st7789v_commands.h>       // Commands for the display's driver chip, Siltronix ST7789V
+
+// Pin Definitions
+
