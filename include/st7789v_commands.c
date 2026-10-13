@@ -37,7 +37,7 @@ void ST7789V_Init() {
     ST7789V_IO_WriteRegister(ST7789V_SLPOUT);       // Pull from sleep
     // TODO: Delay
     ST7789V_IO_WriteRegister(ST7789V_COLMOD);       // Set color depth to 262K 18bit/pixel
-    ST7789V_IO_WriteData(0x66);
+    ST7789V_IO_WriteData(0x06);
     // TODO: Delay
     ST7789V_IO_WriteRegister(ST7789V_MADCTL);       
     ST7789V_IO_WriteData(0x00);                     // Page addr T>B, column addr L>R, page/column order normal, line addr order T>B, RGB, refresh L>R
