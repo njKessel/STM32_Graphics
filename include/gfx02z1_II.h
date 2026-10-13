@@ -28,7 +28,11 @@ DESCRIPTION -------------------------
 
 // Includes
 #include <stdint.h>                 // Integer types
-#include <st7789v_commands.h>       // Commands for the display's driver chip, Siltronix ST7789V
+#include "st7789v_commands.h"       // Commands for the display's driver chip, Siltronix ST7789V
 
-// Pin Definitions
+// Data Write
+void display_IO_WriteReg(uint16_t reg);
+void display_IO_WriteDat(uint16_t data);
 
+void displayInit();
+void display_IO_Init();

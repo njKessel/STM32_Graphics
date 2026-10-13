@@ -12,7 +12,9 @@ INCLUDES = -Iinclude -Ivendor/cmsis									# Telling Make that the #include fil
 # Where to find source
 C_SOURCES = \
 src/main.c \
-src/system_stm32f4xx.c
+src/system_stm32f4xx.c \
+include/gfx02z1_II.c \
+include/st7789v_commands.c
 
 # Assembly startup file
 ASM_SOURCES = startup/startup_stm32f412zx.s

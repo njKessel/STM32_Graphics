@@ -57,3 +57,11 @@ void ST7789V_DispOff() {
     ST7789V_IO_WriteRegister(ST7789V_DISPOFF);      // Display off
     // TODO: Delay
 }
+
+void ST7789V_IO_WriteRegister(uint8_t Register){
+    display_IO_WriteReg(Register);
+}
+
+void ST7789V_IO_WriteData(uint8_t Data) {
+    display_IO_WriteDat(Data);
+}

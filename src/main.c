@@ -1,6 +1,11 @@
 #include <stdint.h>
 #include "stm32f4xx.h"
+#include "gfx02z1_II.h"
 
 int main() {
-    return 0;
+    displayInit();
+
+    while(1) {
+        __NOP();
+    }
 }

@@ -33,6 +33,7 @@ DESCRIPTION -------------------------
 
 // Includes
 #include <stdint.h>
+#include "gfx02z1_II.h"
 
 // Screen Size
 //      Direction           Size            Size in pixels
@@ -106,7 +107,7 @@ void        ST7789V_DispOn();
 void        ST7789V_DispOff();
 
 // IO functions
-void        ST7789V_IO_WriteData(uint8_t RegValue);
+void        ST7789V_IO_WriteData(uint8_t Data);
 void        ST7789V_IO_WriteRegister(uint8_t Register);
 void        ST7789V_IO_ReadData(uint8_t RegValue, uint8_t ReadSize); // TODO: check sizes
 
