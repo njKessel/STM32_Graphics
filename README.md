@@ -7,5 +7,5 @@ Inspired by some projects for running 3D game engines on things like the RP2040 
 | 1   | MCU                                            | NUCLEO-F412ZG     |
 | 1   | MICROCONTROLLERS Expansion Board               | X-NUCLEO-GFX02Z1  |
 
-# AI Usage
+## AI Usage
 I intend to use minimal generative AI assistance for this project. Each file that I create contains a section for AI usage, what models were used, and what edits they made starting from 2026-09-22. The prompt section instructs LLMs to modify these fields as they edit files. Again, I intend to use LLM's as little as possible, but this is inteded to keep a record.
