@@ -1,6 +1,6 @@
 # STM32 Graphics
 Inspired by some projects for running 3D game engines on things like the RP2040 and the ESP32, this projects goal is to make a 3D rasterized graphics engine on the STM32 F4, later to be ported to the more powerful STM32 H7. This is done fully bare-metal to practice my own work with C to better understand the hardware and to best optimize for rendering. 
-
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/njKessel/STM32_Graphics/issues/)
 ## Current BOM
 | QTY | TYPE                                           | PART              |
 | --- | ---------------------------------------------- | ----------------- |
