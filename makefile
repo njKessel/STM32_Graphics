@@ -17,7 +17,9 @@ include/gfx02z1_II.c \
 include/st7789v_commands.c
 
 # Assembly startup file
-ASM_SOURCES = startup/startup_stm32f412zx.s
+ASM_SOURCES = \
+startup/startup_stm32f412zx.s \
+include/delays.s
 
 # C Compiler flags
 CFLAGS = $(MCU) $(INCLUDES) -Wall -Os -MMD -MP -DSTM32F412Zx -H		# Pass MCU and INCLUDES variables to the C compiler, show all warnings (-Wall) and optimize for size (-Os), -MMD and -MP handle dependencies 
@@ -31,8 +33,8 @@ OBJECTS = $(addprefix build/,$(notdir $(C_SOURCES:.c=.o)))			# Replace file exte
 OBJECTS += $(addprefix build/,$(notdir $(ASM_SOURCES:.s=.o)))		# Do the same but for assembly
 
 # Tell make where to search for the raw source files
-vpath %.c src														# Look for C files in src
-vpath %.s startup 													# Look for Assembly files in startup
+vpath %.c src include 												# Look for C files in src
+vpath %.s startup include 											# Look for Assembly files in startup
 
 # Build Rules -------------------------------
 all: build/main.elf build/main.bin size								# Tells make it needs build/main.elf, so it figures out how to make it with later rules. Does the same for main.bin, and prints size to terminal using size rule later on.
@@ -72,7 +74,7 @@ clean:
 
 # Flash to the start of the chips memory
 flash:
-	st-flash --reset write build/main.bin 0x08000000
+	st-flash --connect-under-reset --flash=1024k --reset write build/main.bin 0x08000000
 
 # Dependencies
 #	ignore if it doesnt exist, but if there are dependency files created by -MMD -MP then include those rules in this makefile. wildcard tells it to grab any and all .d files, 
