@@ -101,6 +101,7 @@ DESCRIPTION -------------------------
 #define ST7789V_RDID2                   0xDBU               // Read ID2
 #define ST7789V_RDID3                   0xDCU               // Read ID3
 
+
 // Display Functions
 void        ST7789V_Init();
 void        ST7789V_DispOn();

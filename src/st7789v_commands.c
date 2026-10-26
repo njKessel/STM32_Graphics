@@ -31,31 +31,33 @@ DESCRIPTION -------------------------
 
 #include "st7789v_commands.h"
 
+extern void delayms(uint32_t ms);
+
 void ST7789V_Init() {
     ST7789V_IO_WriteRegister(ST7789V_SWRESET);      // Software reset
-    // TODO: Delay
+    delayms(150);
     ST7789V_IO_WriteRegister(ST7789V_SLPOUT);       // Pull from sleep
-    // TODO: Delay
+    delayms(500);
     ST7789V_IO_WriteRegister(ST7789V_COLMOD);       // Set color depth to 262K 18bit/pixel
     ST7789V_IO_WriteData(0x06);
-    // TODO: Delay
+    delayms(10);
     ST7789V_IO_WriteRegister(ST7789V_MADCTL);       
     ST7789V_IO_WriteData(0x00);                     // Page addr T>B, column addr L>R, page/column order normal, line addr order T>B, RGB, refresh L>R
     // TODO: Delay
     ST7789V_IO_WriteRegister(ST7789V_NORON);        // Normal mode
-    // TODO: Delay
+    delayms(10);
     ST7789V_IO_WriteRegister(ST7789V_DISPON);       // Display on
-    // TODO: Delay
+    delayms(500);
 }
 
 // Display power on/off
 void ST7789V_DispOn() {
     ST7789V_IO_WriteRegister(ST7789V_DISPON);       // Display on
-    // TODO: Delay
+    delayms(50);
 }
 void ST7789V_DispOff() {
     ST7789V_IO_WriteRegister(ST7789V_DISPOFF);      // Display off
-    // TODO: Delay
+    delayms(10);
 }
 
 void ST7789V_IO_WriteRegister(uint8_t Register){
