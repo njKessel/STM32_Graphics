@@ -47,7 +47,6 @@ nopLoop\@:
 .type delayms, %function                                            // Label as Thumb-2
 
 delayms:
-                PUSH                    {r4}                        // Save original value of r4
                 BBDelay1ms              r0                          
-                POP                     {r4}                        // Restore value of r4
                 bx                      lr                          // Branch back to main
+
