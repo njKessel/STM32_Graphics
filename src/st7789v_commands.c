@@ -34,15 +34,17 @@ DESCRIPTION -------------------------
 extern void delayms(uint32_t ms);
 
 void ST7789V_Init() {
+    ST7789V_IO_CS();
     ST7789V_IO_WriteRegister(ST7789V_SWRESET);      // Software reset
     delayms(150);
     ST7789V_IO_WriteRegister(ST7789V_SLPOUT);       // Pull from sleep
     delayms(500);
     ST7789V_IO_WriteRegister(ST7789V_COLMOD);       // Set color depth to 262K 18bit/pixel
-    ST7789V_IO_WriteData(0x06);
+    ST7789V_IO_WriteData(ST7789V_MAP(0x06U));
     delayms(10);
     ST7789V_IO_WriteRegister(ST7789V_MADCTL);       
-    ST7789V_IO_WriteData(0x00);                     // Page addr T>B, column addr L>R, page/column order normal, line addr order T>B, RGB, refresh L>R
+    ST7789V_IO_WriteData(ST7789V_MAP(0x00U));                     // Page addr T>B, column addr L>R, page/column order normal, line addr order T>B, RGB, refresh L>R
+    delayms(10);
     // TODO: Delay
     ST7789V_IO_WriteRegister(ST7789V_NORON);        // Normal mode
     delayms(10);
@@ -60,10 +62,44 @@ void ST7789V_DispOff() {
     delayms(10);
 }
 
-void ST7789V_IO_WriteRegister(uint8_t Register){
+void ST7789V_IO_WriteRegister(uint16_t Register){
     display_IO_WriteReg(Register);
 }
 
-void ST7789V_IO_WriteData(uint8_t Data) {
+void ST7789V_IO_WriteData(uint16_t Data) {
     display_IO_WriteDat(Data);
+}
+
+void ST7789V_InvertOn() {
+    ST7789V_IO_WriteRegister(ST7789V_INVON);
+}
+
+void ST7789V_InvertOff() {
+    ST7789V_IO_WriteRegister(ST7789V_INVOFF);
+}
+
+void ST7789V_IO_CS(void) {
+    display_IO_ChipSelect();
+    delayms(1);
+}
+
+void ST7789V_TestPixel(void) {
+    ST7789V_IO_WriteRegister(ST7789V_CASET);
+    ST7789V_IO_WriteData(ST7789V_MAP(0x00U));
+    ST7789V_IO_WriteData(ST7789V_MAP(0x32U));
+    ST7789V_IO_WriteData(ST7789V_MAP(0x00U));
+    ST7789V_IO_WriteData(ST7789V_MAP(0x63U));
+
+    ST7789V_IO_WriteRegister(ST7789V_RASET);
+    ST7789V_IO_WriteData(ST7789V_MAP(0x00U));
+    ST7789V_IO_WriteData(ST7789V_MAP(0x32U));
+    ST7789V_IO_WriteData(ST7789V_MAP(0x00U));
+    ST7789V_IO_WriteData(ST7789V_MAP(0x63U));
+
+    ST7789V_IO_WriteRegister(ST7789V_RAMWR);
+    for (int i = 0; i < 2500; i++) {
+        ST7789V_IO_WriteData(ST7789V_MAP(0xFF));
+        ST7789V_IO_WriteData(ST7789V_MAP(0x00));
+        ST7789V_IO_WriteData(ST7789V_MAP(0x00));
+    }
 }
