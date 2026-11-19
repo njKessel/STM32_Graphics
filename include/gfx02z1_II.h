@@ -30,9 +30,29 @@ DESCRIPTION -------------------------
 #include <stdint.h>                 // Integer types
 #include "st7789v_commands.h"       // Commands for the display's driver chip, Siltronix ST7789V
 
+#define MASK_GPIOD_DAT      0xC003U     // Bit mask for GPIOD data pins
+#define MASK_GPIOE_DAT      0x0780U     // Bit mask for GPIOE data pins
+
+#define MASK_GPIOE_DCX      0x0010U     // Bit mask for the data/command select pin @ PE4
+#define MASK_GPIOD_CS       0x0080U     // Bit mask for the chip select pin @ PD7
+#define MASK_GPIOD_W        0x0020U     // Bit mask for the write enable pin @ PD5
+
+// Enables
+void display_IO_ChipSelect(void);
+
 // Data Write
 void display_IO_WriteReg(uint16_t reg);
 void display_IO_WriteDat(uint16_t data);
 
 void displayInit();
 void display_IO_Init();
+
+void display_CommandSelect(void);
+void display_DataSelect(void);
+
+void display_IO_WriteSend(void);
+void display_IO_WriteStart(void);
+
+void display_InvertOn(void);
+void display_InvertOff(void);
+void display_TestPixel(void);
